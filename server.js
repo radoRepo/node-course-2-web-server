@@ -2,6 +2,7 @@ const express=require('express');
 const hbs = require('hbs');
 const fs = require('fs')
 var app = express();
+const port = process.env.PORT||3000;
 
 hbs.registerPartials(__dirname+'/views/partials');
 hbs.registerHelper('getCurrentYear',()=>{
@@ -30,9 +31,9 @@ app.use((req,res,next)=>{
 next();
 });
 
-app.use((req,res,next)=>{
-    res.render('maintainance.hbs');
-})
+// app.use((req,res,next)=>{
+//     res.render('maintainance.hbs');
+// })
 app.use(express.static(__dirname+'/public')); //re-order ir if needed
 
 app.get('/',(req,res)=>{
@@ -56,6 +57,6 @@ errorMessage:"Unable to handle request"
 //bind application to port in our machine
 
 
-app.listen(3000,()=>{
+app.listen(port,()=>{
     console.log("Server running at port 3000!");
 });
